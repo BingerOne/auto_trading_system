@@ -1,0 +1,25 @@
+{
+  "algorithm-type-name": "MyTradingAlgorithm",
+  "algorithm-language": "Python",
+  "data-folder": "../data",
+  "job-queue": "default",
+  "job-user-id": 1,
+  "live-mode": false,
+  "debug": true,
+  "environment": "docker",
+  "brokerage": "InteractiveBrokersBrokerage",
+  "interactive-brokers": {
+    "account-number": "YOUR_IB_ACCOUNT",
+    "host": "localhost",
+    "port": 7497
+  },
+  "alpaca": {
+    "key-id": "YOUR_ALPACA_KEY",
+    "secret-key": "YOUR_ALPACA_SECRET",
+    "base-url": "https://paper-api.alpaca.markets"
+  },
+  "binance": {
+    "api-key": "YOUR_BINANCE_API_KEY",
+    "secret-key": "YOUR_BINANCE_SECRET_KEY"
+  }
+}

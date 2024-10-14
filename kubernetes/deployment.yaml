@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trading-system
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: trading-system
+  template:
+    metadata:
+      labels:
+        app: trading-system
+    spec:
+      containers:
+      - name: data-acquisition
+        image: your_docker_image_data_acquisition
+        ports:
+        - containerPort: 8000
+      - name: strategy
+        image: your_docker_image_strategy
+        ports:
+        - containerPort: 8001
+      - name: backtesting
+        image: your_docker_image_backtesting
+        ports:
+        - containerPort: 8002

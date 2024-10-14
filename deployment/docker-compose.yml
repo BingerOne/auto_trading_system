@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  data_acquisition:
+    build:
+      context: ./data_acquisition
+      dockerfile: Dockerfile
+    environment:
+      - API_KEY=your_api_key
+    networks:
+      - trading_network
+
+  strategy:
+    build:
+      context: ./strategy
+      dockerfile: Dockerfile
+    depends_on:
+      - data_acquisition
+    networks:
+      - trading_network
+
+  backtesting:
+    build:
+      context: ./backtesting
+      dockerfile: Dockerfile
+    networks:
+      - trading_network
+
+networks:
+  trading_network:
+    driver: bridge

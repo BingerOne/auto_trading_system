@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        pip install -r data_acquisition/requirements.txt
+        pip install -r strategy/requirements.txt
+        pip install -r backtesting/requirements.txt
+
+    - name: Run tests
+      run: |
+        # 在此添加测试命令
+        echo "Running tests..."
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: your_dockerhub_username/your_image_name:latest
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f kubernetes/deployment.yaml
